@@ -1,0 +1,126 @@
+<html><head><link type='text/css' href='style.css' rel='stylesheet'></head><body class='pgBgnd'>
+<h3 align='center'>Equations</h3>
+<table width='90%' align='center' border='1' cellpadding='0' cellspacing='0'>
+<tr><td>
+</td></tr><tr><td>
+********** Mapped Logic **********
+</td></tr><tr><td>
+</td></tr><tr><td>
+NMI_z80 <= '1';
+</td></tr><tr><td>
+</td></tr><tr><td>
+RAM_ce_n <= ((memrq)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (ROM_en AND NOT addr80_15));
+</td></tr><tr><td>
+</td></tr><tr><td>
+ROM_ce_n <= NOT ((ROM_en AND NOT memrq AND NOT addr80_15));
+</td></tr><tr><td>
+FDCPE_ROM_en: FDCPE port map (ROM_en,data_z80_0.PIN,ROM_en_C,'0',common_on/common_on_SETF,ROM_en_CE);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROM_en_C <= (NOT wr_z80 AND NOT iorq);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROM_en_CE <= (NOT addr80(2) AND addr80(1) AND addr80(0));
+</td></tr><tr><td>
+</td></tr><tr><td>
+addr_16 <= NOT (((NOT bank(0))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (common_on AND NOT memtop AND addr80_15)));
+</td></tr><tr><td>
+</td></tr><tr><td>
+addr_17 <= ((NOT bank(1))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (common_on AND NOT memtop AND addr80_15));
+</td></tr><tr><td>
+</td></tr><tr><td>
+addr_18 <= NOT (((NOT bank(2))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (common_on AND NOT memtop AND addr80_15)));
+</td></tr><tr><td>
+FDCPE_bank0: FDCPE port map (bank(0),data_z80_1,bank_C(0),common_on/common_on_SETF,'0',bank_CE(0));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank_C(0) <= (NOT wr_z80 AND NOT iorq);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank_CE(0) <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+</td></tr><tr><td>
+FDCPE_bank1: FDCPE port map (bank(1),data_z80_2,bank_C(1),common_on/common_on_SETF,'0',bank_CE(1));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank_C(1) <= (NOT wr_z80 AND NOT iorq);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank_CE(1) <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+</td></tr><tr><td>
+FDCPE_bank2: FDCPE port map (bank(2),data_z80_3,bank_C(2),common_on/common_on_SETF,'0',bank_CE(2));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank_C(2) <= (NOT wr_z80 AND NOT iorq);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bank_CE(2) <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+</td></tr><tr><td>
+FDCPE_common_on: FDCPE port map (common_on,NOT data_z80_6,common_on_C,'0',common_on/common_on_SETF,common_on_CE);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;common_on_C <= (NOT wr_z80 AND NOT iorq);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;common_on_CE <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+</td></tr><tr><td>
+</td></tr><tr><td>
+common_on/common_on_SETF <= ((NOT rst_n)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	addr6502(0)));
+</td></tr><tr><td>
+</td></tr><tr><td>
+data_6502_7_I <= ((NOT devsel AND NOT addr6502(2) AND addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT addr6502(0) AND data_z80_7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (devsel AND data_z80_0)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (addr6502(2) AND data_z80_0)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT addr6502(1) AND data_z80_0)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (addr6502(0) AND data_z80_0));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_6502_7 <= data_6502_7_I when data_6502_7_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_6502_7_OE <= (NOT devsel AND NOT addr6502(2) AND addr6502(1));
+</td></tr><tr><td>
+</td></tr><tr><td>
+data_rdy_to6502/data_rdy_to6502_RSTF <= ((NOT rst_n)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	addr6502(0))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT addr6502(0)));
+</td></tr><tr><td>
+</td></tr><tr><td>
+data_rdy_to80/data_rdy_to80_RSTF <= ((NOT rst_n)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	addr6502(0))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND addr80(0) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT rd_z80));
+</td></tr><tr><td>
+FDCPE_data_z80_0: FDCPE port map (data_z80_0_I,'1',data_z80_0_C,data_rdy_to6502/data_rdy_to6502_RSTF,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_z80_0_C <= NOT ((NOT wr_z80 AND NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT addr80(0)));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_z80_0 <= data_z80_0_I when data_z80_0_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_z80_0_OE <= (NOT iorq AND NOT addr80(2) AND addr80(1) AND NOT addr80(0) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT rd_z80);
+</td></tr><tr><td>
+FDCPE_data_z80_7: FDCPE port map (data_z80_7_I,'1',data_z80_7_C,data_rdy_to80/data_rdy_to80_RSTF,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_z80_7_C <= NOT ((NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	addr6502(0) AND NOT rw));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_z80_7 <= data_z80_7_I when data_z80_7_OE = '1' else 'Z';
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_z80_7_OE <= (NOT iorq AND NOT addr80(2) AND addr80(1) AND NOT addr80(0) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT rd_z80);
+</td></tr><tr><td>
+</td></tr><tr><td>
+reset_z80 <= NOT (((NOT rst_n)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	addr6502(0))));
+</td></tr><tr><td>
+</td></tr><tr><td>
+to65_clk <= NOT ((NOT wr_z80 AND NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT addr80(0)));
+</td></tr><tr><td>
+</td></tr><tr><td>
+to65_oe_n <= NOT (((NOT iosel)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT addr6502(0))));
+</td></tr><tr><td>
+</td></tr><tr><td>
+toz80_clk <= NOT ((NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	addr6502(0) AND NOT rw));
+</td></tr><tr><td>
+</td></tr><tr><td>
+toz80_oe_n <= NOT ((NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND addr80(0) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT rd_z80));
+</td></tr><tr><td>
+Register Legend:
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FDCPE (Q,D,C,CLR,PRE,CE); 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FTCPE (Q,D,C,CLR,PRE,CE); 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDCP  (Q,D,G,CLR,PRE); 
+</td></tr><tr><td>
+</td></tr>
+</table>
+<form><span class="pgRef"><table width="90%" align="center"><tr>
+<td align="left"><input type="button" onclick="javascript:parent.leftnav.showTop()" onmouseover="window.status='goto top of page'; return true;" onmouseout="window.status=''" value="back to top"></td>
+<td align="right"><input type="button" onclick="window.print()" onmouseover="window.status='print page'; return true;" onmouseout="window.status=''" value="print page"></td>
+</tr></table></span></form>
+</body></html>

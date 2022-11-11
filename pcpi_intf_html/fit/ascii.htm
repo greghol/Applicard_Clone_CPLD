@@ -1,0 +1,458 @@
+<html><body>
+<pre>
+ 
+cpldfit:  version P.68d                             Xilinx Inc.
+                                  Fitter Report
+Design Name: pcpi_intf                           Date: 11-10-2022, 11:05PM
+Device Used: XC9536XL-5-PC44
+Fitting Status: Successful
+
+*************************  Mapped Resource Summary  **************************
+
+Macrocells     Product Terms    Function Block   Registers      Pins           
+Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
+22 /36  ( 61%) 56  /180  ( 31%) 44 /108 ( 41%)   7  /36  ( 19%) 34 /34  (100%)
+
+** Function Block Resources **
+
+Function    Mcells      FB Inps     Pterms      IO          
+Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
+FB1          14/18       26/54       44/90      17/17*
+FB2           8/18       18/54       12/90      17/17*
+             -----       -----       -----      -----    
+             22/36       44/108      56/180     34/34 
+
+* - Resource is exhausted
+
+** Global Control Resources **
+
+Global clock net(s) unused.
+Global output enable net(s) unused.
+Global set/reset net(s) unused.
+
+** Pin Resources **
+
+Signal Type    Required     Mapped  |  Pin Type            Used    Total 
+------------------------------------|------------------------------------
+Input         :   20          20    |  I/O              :    28      28
+Output        :   13          13    |  GCK/IO           :     3       3
+Bidirectional :    1           1    |  GTS/IO           :     2       2
+GCK           :    0           0    |  GSR/IO           :     1       1
+GTS           :    0           0    |
+GSR           :    0           0    |
+                 ----        ----
+        Total     34          34
+
+** Power Data **
+
+There are 22 macrocells in high performance mode (MCHP).
+There are 0 macrocells in low power mode (MCLP).
+End of Mapped Resource Summary
+**************************  Errors and Warnings  ***************************
+
+WARNING:Cpld - Unable to retrieve the path to the iSE Project Repository. Will
+   use the default filename of 'pcpi_intf.ise'.
+INFO:Cpld - Inferring BUFG constraint for signal 'addr80_15' based upon the LOC
+   constraint 'P7'. It is recommended that you declare this BUFG explicitedly in
+   your design. Note that for certain device families the output of a BUFG
+   constraint can not drive a gated clock, and the BUFG constraint will be
+   ignored.
+INFO:Cpld - Inferring BUFG constraint for signal 'iosel' based upon the LOC
+   constraint 'P5'. It is recommended that you declare this BUFG explicitedly in
+   your design. Note that for certain device families the output of a BUFG
+   constraint can not drive a gated clock, and the BUFG constraint will be
+   ignored.
+INFO:Cpld - Inferring BUFG constraint for signal 'rst_n' based upon the LOC
+   constraint 'P6'. It is recommended that you declare this BUFG explicitedly in
+   your design. Note that for certain device families the output of a BUFG
+   constraint can not drive a gated clock, and the BUFG constraint will be
+   ignored.
+WARNING:Cpld:1239 - The global clock designation (BUFG) on signal 'rst_n_IBUF'
+   is ignored. Most likely the signal is gated and therefore cannot be used as a
+   global control signal.
+WARNING:Cpld:1239 - The global clock designation (BUFG) on signal 'iosel_IBUF'
+   is ignored. Most likely the signal is gated and therefore cannot be used as a
+   global control signal.
+WARNING:Cpld:1239 - The global clock designation (BUFG) on signal
+   'addr80_15_IBUF' is ignored. Most likely the signal is gated and therefore
+   cannot be used as a global control signal.
+*************************  Summary of Mapped Logic  ************************
+
+** 14 Outputs **
+
+Signal                                Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
+Name                                  Pts   Inps          No.  Type    Use     Mode Rate State
+addr_17                               2     4     FB1_9   11   I/O     O       STD  FAST 
+RAM_ce_n                              2     3     FB1_11  13   I/O     O       STD  FAST 
+data_6502_7                           6     6     FB1_12  14   I/O     O       STD  FAST 
+ROM_ce_n                              1     3     FB1_14  19   I/O     O       STD  FAST 
+data_z80_0                            3     7     FB1_15  20   I/O     I/O     STD  FAST RESET
+reset_z80                             2     5     FB1_17  24   I/O     O       STD  FAST 
+addr_16                               2     4     FB2_6   39   GSR/I/O O       STD  FAST 
+toz80_oe_n                            1     5     FB2_7   38   I/O     O       STD  FAST 
+to65_oe_n                             2     5     FB2_8   37   I/O     O       STD  FAST 
+toz80_clk                             1     5     FB2_9   36   I/O     O       STD  FAST 
+addr_18                               2     4     FB2_12  33   I/O     O       STD  FAST 
+to65_clk                              1     5     FB2_14  28   I/O     O       STD  FAST 
+data_z80_7                            3     11    FB2_16  26   I/O     O       STD  FAST RESET
+NMI_z80                               0     0     FB2_17  25   I/O     O       STD  FAST 
+
+** 8 Buried Nodes **
+
+Signal                                Total Total Loc     Pwr  Reg Init
+Name                                  Pts   Inps          Mode State
+common_on/common_on_SETF              2     5     FB1_5   STD  
+data_rdy_to80/data_rdy_to80_RSTF      3     10    FB1_6   STD  
+data_rdy_to6502/data_rdy_to6502_RSTF  3     5     FB1_7   STD  
+common_on                             4     7     FB1_8   STD  RESET
+bank<2>                               4     7     FB1_10  STD  RESET
+bank<1>                               4     7     FB1_13  STD  RESET
+bank<0>                               4     7     FB1_16  STD  RESET
+ROM_en                                4     7     FB1_18  STD  RESET
+
+** 20 Inputs **
+
+Signal                                Loc     Pin  Pin     Pin     
+Name                                          No.  Type    Use     
+addr6502<1>                           FB1_1   2    I/O     I
+data_z80_2                            FB1_2   3    I/O     I
+iosel                                 FB1_3   5    GCK/I/O I
+addr6502<2>                           FB1_4   4    I/O     I
+rst_n                                 FB1_5   6    GCK/I/O I
+data_z80_6                            FB1_6   8    I/O     I
+addr80_15                             FB1_7   7    GCK/I/O I
+memtop                                FB1_8   9    I/O     I
+data_z80_3                            FB1_10  12   I/O     I
+addr80<0>                             FB1_13  18   I/O     I
+addr80<2>                             FB1_16  22   I/O     I
+rw                                    FB2_1   1    I/O     I
+addr6502<0>                           FB2_2   44   I/O     I
+devsel                                FB2_3   42   GTS/I/O I
+data_z80_1                            FB2_4   43   I/O     I
+wr_z80                                FB2_5   40   GTS/I/O I
+rd_z80                                FB2_10  35   I/O     I
+iorq                                  FB2_11  34   I/O     I
+addr80<1>                             FB2_13  29   I/O     I
+memrq                                 FB2_15  27   I/O     I
+
+Legend:
+Pin No. - ~ - User Assigned
+**************************  Function Block Details  ************************
+Legend:
+Total Pt     - Total product terms used by the macrocell signal
+Imp Pt       - Product terms imported from other macrocells
+Exp Pt       - Product terms exported to other macrocells
+               in direction shown
+Unused Pt    - Unused local product terms remaining in macrocell
+Loc          - Location where logic was mapped in device
+Pin Type/Use - I  - Input             GCK - Global Clock
+               O  - Output            GTS - Global Output Enable
+              (b) - Buried macrocell  GSR - Global Set/Reset
+X            - Signal used as input to the macrocell logic.
+Pin No.      - ~  - User Assigned
+*********************************** FB1  ***********************************
+Number of function block inputs used/remaining:               26/28
+Number of signals used by logic mapping into function block:  26
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB1_1   2     I/O     I
+(unused)              0       0     0   5     FB1_2   3     I/O     I
+(unused)              0       0     0   5     FB1_3   5     GCK/I/O I
+(unused)              0       0     0   5     FB1_4   4     I/O     I
+common_on/common_on_SETF
+                      2       0     0   3     FB1_5   6     GCK/I/O I
+data_rdy_to80/data_rdy_to80_RSTF
+                      3       0     0   2     FB1_6   8     I/O     I
+data_rdy_to6502/data_rdy_to6502_RSTF
+                      3       0     0   2     FB1_7   7     GCK/I/O I
+common_on             4       0     0   1     FB1_8   9     I/O     I
+addr_17               2       0     0   3     FB1_9   11    I/O     O
+bank<2>               4       0     0   1     FB1_10  12    I/O     I
+RAM_ce_n              2       0   \/1   2     FB1_11  13    I/O     O
+data_6502_7           6       1<-   0   0     FB1_12  14    I/O     O
+bank<1>               4       0     0   1     FB1_13  18    I/O     I
+ROM_ce_n              1       0     0   4     FB1_14  19    I/O     O
+data_z80_0            3       0     0   2     FB1_15  20    I/O     I/O
+bank<0>               4       0     0   1     FB1_16  22    I/O     I
+reset_z80             2       0     0   3     FB1_17  24    I/O     O
+ROM_en                4       0     0   1     FB1_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: data_z80_0.PIN    10: bank<1>                               19: data_z80_7 
+  2: ROM_en            11: common_on                             20: devsel 
+  3: addr6502<0>       12: common_on/common_on_SETF              21: iorq 
+  4: addr6502<1>       13: data_rdy_to6502/data_rdy_to6502_RSTF  22: memrq 
+  5: addr6502<2>       14: data_z80_0                            23: memtop 
+  6: addr80<0>         15: data_z80_1                            24: rd_z80 
+  7: addr80_15         16: data_z80_2                            25: rst_n 
+  8: addr80<1>         17: data_z80_3                            26: wr_z80 
+  9: addr80<2>         18: data_z80_6                           
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+common_on/common_on_SETF 
+                     ..XXX..............X....X............... 5
+data_rdy_to80/data_rdy_to80_RSTF 
+                     ..XXXX.XX..........XX..XX............... 10
+data_rdy_to6502/data_rdy_to6502_RSTF 
+                     ..XXX..............X....X............... 5
+common_on            .....X.XX..X.....X..X....X.............. 7
+addr_17              ......X..XX...........X................. 4
+bank<2>              .....X.XX..X....X...X....X.............. 7
+RAM_ce_n             .X....X..............X.................. 3
+data_6502_7          ..XXX........X....XX.................... 6
+bank<1>              .....X.XX..X...X....X....X.............. 7
+ROM_ce_n             .X....X..............X.................. 3
+data_z80_0           .....X.XX...X.......X..X.X.............. 7
+bank<0>              .....X.XX..X..X.....X....X.............. 7
+reset_z80            ..XXX..............X....X............... 5
+ROM_en               X....X.XX..X........X....X.............. 7
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB2  ***********************************
+Number of function block inputs used/remaining:               18/36
+Number of signals used by logic mapping into function block:  18
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB2_1   1     I/O     I
+(unused)              0       0     0   5     FB2_2   44    I/O     I
+(unused)              0       0     0   5     FB2_3   42    GTS/I/O I
+(unused)              0       0     0   5     FB2_4   43    I/O     I
+(unused)              0       0     0   5     FB2_5   40    GTS/I/O I
+addr_16               2       0     0   3     FB2_6   39    GSR/I/O O
+toz80_oe_n            1       0     0   4     FB2_7   38    I/O     O
+to65_oe_n             2       0     0   3     FB2_8   37    I/O     O
+toz80_clk             1       0     0   4     FB2_9   36    I/O     O
+(unused)              0       0     0   5     FB2_10  35    I/O     I
+(unused)              0       0     0   5     FB2_11  34    I/O     I
+addr_18               2       0     0   3     FB2_12  33    I/O     O
+(unused)              0       0     0   5     FB2_13  29    I/O     I
+to65_clk              1       0     0   4     FB2_14  28    I/O     O
+(unused)              0       0     0   5     FB2_15  27    I/O     I
+data_z80_7            3       0     0   2     FB2_16  26    I/O     O
+NMI_z80               0       0     0   5     FB2_17  25    I/O     O
+(unused)              0       0     0   5     FB2_18        (b)     
+
+Signals Used by Logic in Function Block
+  1: addr6502<0>        7: addr80<2>                         13: iorq 
+  2: addr6502<1>        8: bank<0>                           14: iosel 
+  3: addr6502<2>        9: bank<2>                           15: memtop 
+  4: addr80<0>         10: common_on                         16: rd_z80 
+  5: addr80_15         11: data_rdy_to80/data_rdy_to80_RSTF  17: rw 
+  6: addr80<1>         12: devsel                            18: wr_z80 
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+addr_16              ....X..X.X....X......................... 4
+toz80_oe_n           ...X.XX.....X..X........................ 5
+to65_oe_n            XXX........X.X.......................... 5
+toz80_clk            XXX........X....X....................... 5
+addr_18              ....X...XX....X......................... 4
+to65_clk             ...X.XX.....X....X...................... 5
+data_z80_7           XXXX.XX...XXX..XX....................... 11
+NMI_z80              ........................................ 0
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*******************************  Equations  ********************************
+
+********** Mapped Logic **********
+
+
+NMI_z80 <= '1';
+
+
+RAM_ce_n <= ((memrq)
+	OR (ROM_en AND NOT addr80_15));
+
+
+ROM_ce_n <= NOT ((ROM_en AND NOT memrq AND NOT addr80_15));
+
+FDCPE_ROM_en: FDCPE port map (ROM_en,data_z80_0.PIN,ROM_en_C,'0',common_on/common_on_SETF,ROM_en_CE);
+ROM_en_C <= (NOT wr_z80 AND NOT iorq);
+ROM_en_CE <= (NOT addr80(2) AND addr80(1) AND addr80(0));
+
+
+addr_16 <= NOT (((NOT bank(0))
+	OR (common_on AND NOT memtop AND addr80_15)));
+
+
+addr_17 <= ((NOT bank(1))
+	OR (common_on AND NOT memtop AND addr80_15));
+
+
+addr_18 <= NOT (((NOT bank(2))
+	OR (common_on AND NOT memtop AND addr80_15)));
+
+FDCPE_bank0: FDCPE port map (bank(0),data_z80_1,bank_C(0),common_on/common_on_SETF,'0',bank_CE(0));
+bank_C(0) <= (NOT wr_z80 AND NOT iorq);
+bank_CE(0) <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+
+FDCPE_bank1: FDCPE port map (bank(1),data_z80_2,bank_C(1),common_on/common_on_SETF,'0',bank_CE(1));
+bank_C(1) <= (NOT wr_z80 AND NOT iorq);
+bank_CE(1) <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+
+FDCPE_bank2: FDCPE port map (bank(2),data_z80_3,bank_C(2),common_on/common_on_SETF,'0',bank_CE(2));
+bank_C(2) <= (NOT wr_z80 AND NOT iorq);
+bank_CE(2) <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+
+FDCPE_common_on: FDCPE port map (common_on,NOT data_z80_6,common_on_C,'0',common_on/common_on_SETF,common_on_CE);
+common_on_C <= (NOT wr_z80 AND NOT iorq);
+common_on_CE <= (addr80(2) AND addr80(1) AND NOT addr80(0));
+
+
+common_on/common_on_SETF <= ((NOT rst_n)
+	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+	addr6502(0)));
+
+
+data_6502_7_I <= ((NOT devsel AND NOT addr6502(2) AND addr6502(1) AND 
+	NOT addr6502(0) AND data_z80_7)
+	OR (devsel AND data_z80_0)
+	OR (addr6502(2) AND data_z80_0)
+	OR (NOT addr6502(1) AND data_z80_0)
+	OR (addr6502(0) AND data_z80_0));
+data_6502_7 <= data_6502_7_I when data_6502_7_OE = '1' else 'Z';
+data_6502_7_OE <= (NOT devsel AND NOT addr6502(2) AND addr6502(1));
+
+
+data_rdy_to6502/data_rdy_to6502_RSTF <= ((NOT rst_n)
+	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+	addr6502(0))
+	OR (NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+	NOT addr6502(0)));
+
+
+data_rdy_to80/data_rdy_to80_RSTF <= ((NOT rst_n)
+	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+	addr6502(0))
+	OR (NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND addr80(0) AND 
+	NOT rd_z80));
+
+FDCPE_data_z80_0: FDCPE port map (data_z80_0_I,'1',data_z80_0_C,data_rdy_to6502/data_rdy_to6502_RSTF,'0');
+data_z80_0_C <= NOT ((NOT wr_z80 AND NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND 
+	NOT addr80(0)));
+data_z80_0 <= data_z80_0_I when data_z80_0_OE = '1' else 'Z';
+data_z80_0_OE <= (NOT iorq AND NOT addr80(2) AND addr80(1) AND NOT addr80(0) AND 
+	NOT rd_z80);
+
+FDCPE_data_z80_7: FDCPE port map (data_z80_7_I,'1',data_z80_7_C,data_rdy_to80/data_rdy_to80_RSTF,'0');
+data_z80_7_C <= NOT ((NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+	addr6502(0) AND NOT rw));
+data_z80_7 <= data_z80_7_I when data_z80_7_OE = '1' else 'Z';
+data_z80_7_OE <= (NOT iorq AND NOT addr80(2) AND addr80(1) AND NOT addr80(0) AND 
+	NOT rd_z80);
+
+
+reset_z80 <= NOT (((NOT rst_n)
+	OR (NOT devsel AND addr6502(2) AND NOT addr6502(1) AND 
+	addr6502(0))));
+
+
+to65_clk <= NOT ((NOT wr_z80 AND NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND 
+	NOT addr80(0)));
+
+
+to65_oe_n <= NOT (((NOT iosel)
+	OR (NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+	NOT addr6502(0))));
+
+
+toz80_clk <= NOT ((NOT devsel AND NOT addr6502(2) AND NOT addr6502(1) AND 
+	addr6502(0) AND NOT rw));
+
+
+toz80_oe_n <= NOT ((NOT iorq AND NOT addr80(2) AND NOT addr80(1) AND addr80(0) AND 
+	NOT rd_z80));
+
+Register Legend:
+ FDCPE (Q,D,C,CLR,PRE,CE); 
+ FTCPE (Q,D,C,CLR,PRE,CE); 
+ LDCP  (Q,D,G,CLR,PRE); 
+
+******************************  Device Pin Out *****************************
+
+Device : XC9536XL-5-PC44
+
+
+   --------------------------------  
+  /6  5  4  3  2  1  44 43 42 41 40 \
+ | 7                             39 | 
+ | 8                             38 | 
+ | 9                             37 | 
+ | 10                            36 | 
+ | 11        XC9536XL-5-PC44     35 | 
+ | 12                            34 | 
+ | 13                            33 | 
+ | 14                            32 | 
+ | 15                            31 | 
+ | 16                            30 | 
+ | 17                            29 | 
+ \ 18 19 20 21 22 23 24 25 26 27 28 /
+   --------------------------------  
+
+
+Pin Signal                         Pin Signal                        
+No. Name                           No. Name                          
+  1 rw                               23 GND                           
+  2 addr6502<1>                      24 reset_z80                     
+  3 data_z80_2                       25 NMI_z80                       
+  4 addr6502<2>                      26 data_z80_7                    
+  5 iosel                            27 memrq                         
+  6 rst_n                            28 to65_clk                      
+  7 addr80_15                        29 addr80<1>                     
+  8 data_z80_6                       30 TDO                           
+  9 memtop                           31 GND                           
+ 10 GND                              32 VCC                           
+ 11 addr_17                          33 addr_18                       
+ 12 data_z80_3                       34 iorq                          
+ 13 RAM_ce_n                         35 rd_z80                        
+ 14 data_6502_7                      36 toz80_clk                     
+ 15 TDI                              37 to65_oe_n                     
+ 16 TMS                              38 toz80_oe_n                    
+ 17 TCK                              39 addr_16                       
+ 18 addr80<0>                        40 wr_z80                        
+ 19 ROM_ce_n                         41 VCC                           
+ 20 data_z80_0                       42 devsel                        
+ 21 VCC                              43 data_z80_1                    
+ 22 addr80<2>                        44 addr6502<0>                   
+
+
+Legend :  NC  = Not Connected, unbonded pin
+         PGND = Unused I/O configured as additional Ground pin
+         TIE  = Unused I/O floating -- must tie to VCC, GND or other signal
+         KPR  = Unused I/O with weak keeper (leave unconnected)
+         VCC  = Dedicated Power Pin
+         GND  = Dedicated Ground Pin
+         TDI  = Test Data In, JTAG pin
+         TDO  = Test Data Out, JTAG pin
+         TCK  = Test Clock, JTAG pin
+         TMS  = Test Mode Select, JTAG pin
+  PROHIBITED  = User reserved pin
+****************************  Compiler Options  ****************************
+
+Following is a list of all global compiler options used by the fitter run.
+
+Device(s) Specified                         : xc9536xl-5-PC44
+Optimization Method                         : SPEED
+Multi-Level Logic Optimization              : ON
+Ignore Timing Specifications                : OFF
+Default Register Power Up Value             : LOW
+Keep User Location Constraints              : ON
+What-You-See-Is-What-You-Get                : OFF
+Exhaustive Fitting                          : OFF
+Keep Unused Inputs                          : OFF
+Slew Rate                                   : FAST
+Power Mode                                  : STD
+Ground on Unused IOs                        : OFF
+Set I/O Pin Termination                     : KEEPER
+Global Clock Optimization                   : ON
+Global Set/Reset Optimization               : ON
+Global Ouput Enable Optimization            : ON
+Input Limit                                 : 54
+Pterm Limit                                 : 25
+</pre>
+<form><span class="pgRef"><table width="90%" align="center"><tr>
+<td align="left"><input type="button" onclick="javascript:parent.leftnav.showTop()" onmouseover="window.status='goto top of page'; return true;" onmouseout="window.status=''" value="back to top"></td>
+<td align="right"><input type="button" onclick="window.print()" onmouseover="window.status='print page'; return true;" onmouseout="window.status=''" value="print page"></td>
+</tr></table></span></form>
+</body></html>
