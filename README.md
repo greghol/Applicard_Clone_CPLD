@@ -12,29 +12,17 @@ The JED file is ready to be burned into the CPLD.
 
 
  Company:  Freed Consulting
- 
  Engineer: Alex Freed
- 
  Create Date:    21:10:58 12/05/2008
- 
- Design Name:
- 
+ Design Name: 
  Module Name:    pcpi_intf
- 
- Project Name: 
- 
+ Project Name:  
  Target Devices: XC9536
- 
- Tool versions: 
- 
- Description:
- 
- Dependencies: 
- 
+ Tool versions:  
+ Description: 
+ Dependencies:  
  Revision: 2.1
- 
  Revision 0.01 - File Created
- 
  Additional Comments: 
  
 
